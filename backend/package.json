@@ -1,0 +1,25 @@
+{
+    "name": "bird-backend",
+    "version": "1.0.0",
+    "description": "Bird watching backend service",
+    "main": "src/server.js",
+    "type": "commonjs",
+    "scripts": {
+        "start": "node src/server.js",
+        "dev": "node src/server.js",
+        "maintenance": "node scripts/maintenance.js"
+    },
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "express-validator": "^7.0.1",
+        "jsonwebtoken": "^9.0.2",
+        "morgan": "^1.10.0",
+        "multer": "^1.4.5-lts.1",
+        "mysql2": "^3.10.0",
+        "nanoid": "^5.0.7",
+        "sharp": "^0.33.3"
+    }
+}

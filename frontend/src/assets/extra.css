@@ -1,0 +1,9 @@
+.BMap_bubble_content,
+.BMap_pop {
+    box-shadow: none !important;
+}
+
+.anchorBL,
+.BMap_bubble_top {
+    display: none;
+}
