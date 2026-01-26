@@ -94,6 +94,18 @@ a {
     align-items: center;
 }
 
+.action-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: nowrap;
+}
+
+.action-row .button {
+    flex: 1;
+    padding: 8px 10px;
+    justify-content: center;
+}
+
 .grid-gap-10 {
     gap: 10px;
 }
