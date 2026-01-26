@@ -58,6 +58,9 @@ services:
     container_name: bird-frontend
     ports:
       - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/certs:/etc/nginx/certs:ro
     depends_on:
       backend:
         condition: service_healthy
