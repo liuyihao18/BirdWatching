@@ -17,7 +17,6 @@ router.post(
     upload.single("image"),
     body("birdNameCn").isLength({ min: 1 }),
     body("province").isLength({ min: 1 }),
-    body("city").isLength({ min: 1 }),
     body("latitude").isFloat(),
     body("longitude").isFloat(),
     body("takenAt").isISO8601(),

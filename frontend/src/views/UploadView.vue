@@ -52,7 +52,7 @@
         <small class="text-muted">提示：点击地图选点后，将自动填入经纬度与地址信息。</small>
         <div class="form-row">
             <input id="provinceInput" class="input" v-model="form.province" placeholder="省份" />
-            <input id="cityInput" class="input" v-model="form.city" placeholder="城市" />
+            <input id="cityInput" class="input" v-model="form.city" placeholder="城市（可选）" />
         </div>
         <div class="form-row">
             <input id="districtInput" class="input" v-model="form.district" placeholder="区/县（可选）" />
