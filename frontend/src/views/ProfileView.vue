@@ -10,11 +10,11 @@
       <form class="grid grid-gap-12" @submit.prevent="submitPassword">
         <div class="form-row">
           <input class="input" v-model="passwordForm.currentPassword" placeholder="原密码" type="password" />
-          <input class="input" v-model="passwordForm.newPassword" placeholder="新密码" type="password" />
+          <div></div>
         </div>
         <div class="form-row">
+          <input class="input" v-model="passwordForm.newPassword" placeholder="新密码" type="password" />
           <input class="input" v-model="passwordForm.confirmPassword" placeholder="确认新密码" type="password" />
-          <div></div>
         </div>
         <div class="flex-row gap-12">
           <button class="button" type="submit">更新密码</button>
