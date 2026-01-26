@@ -8,6 +8,7 @@
           <router-link to="/gallery">画廊</router-link>
           <router-link to="/upload" v-if="auth.isLoggedIn">上传</router-link>
           <router-link to="/mine" v-if="auth.isLoggedIn">我的照片</router-link>
+          <router-link to="/profile" v-if="auth.isLoggedIn">个人中心</router-link>
           <router-link to="/admin" v-if="auth.user?.role === 'admin'">管理</router-link>
         </div>
         <div class="nav-links">

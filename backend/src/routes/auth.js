@@ -49,4 +49,30 @@ router.get("/me", auth, async (req, res) => {
     return ok(res, rows[0]);
 });
 
+router.post(
+    "/password",
+    auth,
+    body("currentPassword").isLength({ min: 6 }),
+    body("newPassword").isLength({ min: 6 }),
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return fail(res, "参数不正确", 422, { errors: errors.array() });
+        }
+        const { currentPassword, newPassword } = req.body;
+        const [rows] = await pool.query("SELECT id, password_hash FROM users WHERE id = ?", [req.user.id]);
+        if (rows.length === 0) {
+            return fail(res, "用户不存在", 404);
+        }
+        const user = rows[0];
+        const match = await bcrypt.compare(currentPassword, user.password_hash);
+        if (!match) {
+            return fail(res, "原密码错误", 401);
+        }
+        const passwordHash = await bcrypt.hash(newPassword, 10);
+        await pool.query("UPDATE users SET password_hash = ? WHERE id = ?", [passwordHash, req.user.id]);
+        return ok(res, {}, "修改成功");
+    }
+);
+
 module.exports = router;

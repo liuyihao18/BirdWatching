@@ -63,5 +63,6 @@ function selectPhoto(photo) {
   selected.value = photo;
 }
 
+
 onMounted(loadPhotos);
 </script>
