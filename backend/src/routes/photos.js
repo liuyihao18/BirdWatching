@@ -149,9 +149,9 @@ router.put(
     "/:id",
     auth,
     body("birdNameCn").optional().isLength({ min: 1 }),
-    body("latitude").optional().isFloat(),
-    body("longitude").optional().isFloat(),
-    body("takenAt").optional().isISO8601(),
+    body("latitude").optional({ nullable: true }).isFloat(),
+    body("longitude").optional({ nullable: true }).isFloat(),
+    body("takenAt").optional({ nullable: true }).isISO8601(),
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -166,48 +166,39 @@ router.put(
             return fail(res, "无权限", 403);
         }
 
-        const {
-            birdNameCn,
-            birdNameEn,
-            birdNamePinyin,
-            description,
-            province,
-            city,
-            district,
-            address,
-            latitude,
-            longitude,
-            takenAt
-        } = req.body;
+        const updates = [];
+        const params = [];
+        const setField = (field, value) => {
+            updates.push(`${field} = ?`);
+            params.push(value);
+        };
 
+        const has = (key) => Object.prototype.hasOwnProperty.call(req.body, key);
+        const toNullable = (value) => (value === "" ? null : value);
+
+        if (has("birdNameCn")) setField("bird_name_cn", toNullable(req.body.birdNameCn));
+        if (has("birdNameEn")) setField("bird_name_en", toNullable(req.body.birdNameEn));
+        if (has("birdNamePinyin")) setField("bird_name_pinyin", toNullable(req.body.birdNamePinyin));
+        if (has("description")) setField("description", toNullable(req.body.description));
+        if (has("province")) setField("province", toNullable(req.body.province));
+        if (has("city")) setField("city", toNullable(req.body.city));
+        if (has("district")) setField("district", toNullable(req.body.district));
+        if (has("address")) setField("address", toNullable(req.body.address));
+        if (has("latitude")) setField("latitude", toNullable(req.body.latitude));
+        if (has("longitude")) setField("longitude", toNullable(req.body.longitude));
+        if (has("takenAt")) {
+            const value = toNullable(req.body.takenAt);
+            setField("taken_at", value ? new Date(value) : null);
+        }
+
+        if (updates.length === 0) {
+            return ok(res, {}, "无更新内容");
+        }
+
+        params.push(req.params.id);
         await pool.query(
-            `UPDATE photos SET
-        bird_name_cn = COALESCE(?, bird_name_cn),
-        bird_name_en = COALESCE(?, bird_name_en),
-        bird_name_pinyin = COALESCE(?, bird_name_pinyin),
-        description = COALESCE(?, description),
-        province = COALESCE(?, province),
-        city = COALESCE(?, city),
-        district = COALESCE(?, district),
-        address = COALESCE(?, address),
-        latitude = COALESCE(?, latitude),
-        longitude = COALESCE(?, longitude),
-        taken_at = COALESCE(?, taken_at)
-      WHERE id = ?`,
-            [
-                birdNameCn || null,
-                birdNameEn || null,
-                birdNamePinyin || null,
-                description || null,
-                province || null,
-                city || null,
-                district || null,
-                address || null,
-                latitude || null,
-                longitude || null,
-                takenAt ? new Date(takenAt) : null,
-                req.params.id
-            ]
+            `UPDATE photos SET ${updates.join(", ")} WHERE id = ?`,
+            params
         );
 
         return ok(res, {}, "更新成功");
