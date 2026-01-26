@@ -17,14 +17,13 @@ router.post(
     upload.single("image"),
     body("birdNameCn").isLength({ min: 1 }),
     body("province").isLength({ min: 1 }),
-    body("city").isLength({ min: 1 }),
     body("latitude").isFloat(),
     body("longitude").isFloat(),
     body("takenAt").isISO8601(),
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return fail(res, "参数不正确", 422, { errors: errors.array() });
+            return fail(res, "请检查表单", 422, { errors: errors.array() });
         }
         if (!req.file) {
             return fail(res, "请上传图片", 400);
