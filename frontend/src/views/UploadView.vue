@@ -13,7 +13,7 @@
             </label>
             <div class="upload-photo-info">
             <strong>{{ file?.name || "未选择图片" }}</strong>
-            <small class="text-muted">支持 jpg/png，最大 10MB</small>
+            <small class="text-muted">支持 jpg/png，最大 20MB</small>
             </div>
         </div>
         <input id="photoInput" type="file" accept="image/*" @change="handleFile" class="hidden" />
@@ -104,7 +104,7 @@ const file = ref(null);
 const previewUrl = ref("");
 const error = ref("");
 const successVisible = ref(false);
-const maxFileSize = 10 * 1024 * 1024;
+const maxFileSize = 20 * 1024 * 1024;
 const mapEl = ref(null);
 const mapInstance = ref(null);
 const mapMarker = ref(null);
@@ -124,7 +124,7 @@ function handleFile(event) {
     return;
   }
   if (selected.size > maxFileSize) {
-    error.value = "图片大小不能超过10MB";
+    error.value = "图片大小不能超过20MB";
     file.value = null;
     if (previewUrl.value) {
       URL.revokeObjectURL(previewUrl.value);

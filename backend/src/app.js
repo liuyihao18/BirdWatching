@@ -13,7 +13,7 @@ const app = express();
 
 app.use(cors());
 app.use(morgan("dev"));
-app.use(express.json({ limit: "10mb" }));
+app.use(express.json({ limit: "20mb" }));
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/uploads", express.static(path.resolve(config.uploadDir)));
@@ -30,7 +30,7 @@ app.use((err, req, res, next) => {
         return fail(res, err.message, 400);
     }
     if (err && err.code === "LIMIT_FILE_SIZE") {
-        return fail(res, "图片大小不能超过10MB", 400);
+        return fail(res, "图片大小不能超过20MB", 400);
     }
     return fail(res, "服务器错误", 500);
 });
