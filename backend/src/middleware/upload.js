@@ -13,12 +13,16 @@ const storage = multer.diskStorage({
     }
 });
 
+const allowedMimeTypes = new Set(["image/jpeg", "image/png", "image/webp"]);
+const allowedExts = new Set([".jpg", ".jpeg", ".png", ".webp"]);
+
 const upload = multer({
     storage,
     limits: { fileSize: 20 * 1024 * 1024 },
     fileFilter: (req, file, cb) => {
-        if (!file.mimetype.startsWith("image/")) {
-            return cb(new Error("仅支持图片"));
+        const ext = path.extname(file.originalname || "").toLowerCase();
+        if (!allowedMimeTypes.has(file.mimetype) || !allowedExts.has(ext)) {
+            return cb(new Error("仅支持 JPG/PNG/WEBP 图片"));
         }
         return cb(null, true);
     }
