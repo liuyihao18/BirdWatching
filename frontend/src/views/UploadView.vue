@@ -2,7 +2,7 @@
   <div>
     <section class="card">
         <div class="section-title">上传照片</div>
-        <form @submit.prevent="submit" class="grid grid-gap-16">
+        <form @submit.prevent="submit" @keydown.enter.prevent class="grid grid-gap-16">
         <div class="upload-photo-row">
             <label
             for="photoInput"
@@ -45,7 +45,12 @@
             <div v-else ref="mapEl" class="map-canvas"></div>
         </div>
         <div class="form-row">
-            <input class="input" v-model="searchKeyword" placeholder="粗略搜索地点（如：公园/湖/城市名）" />
+            <input
+              class="input"
+              v-model="searchKeyword"
+              placeholder="粗略搜索地点（如：公园/湖/城市名）"
+              @keydown.enter.prevent="searchPlace"
+            />
             <button class="button secondary" type="button" @click="searchPlace">搜索</button>
         </div>
         <small v-if="searchError" class="text-error">{{ searchError }}</small>
