@@ -46,13 +46,13 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 import * as echarts from "echarts";
+import "echarts/map/js/china";
 import api from "../api/client";
 
 const stats = ref([]);
 const mapEl = ref(null);
 const chartInstance = ref(null);
 const mapError = ref("");
-const MAP_URL = "https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json";
 
 async function loadStats() {
   const { data } = await api.get("/stats/provinces");
@@ -121,9 +121,6 @@ async function initMap() {
     return;
   }
   try {
-    const response = await fetch(MAP_URL);
-    const chinaGeoJson = await response.json();
-    echarts.registerMap("china", chinaGeoJson);
     chartInstance.value = echarts.init(mapEl.value);
     renderChart();
     window.addEventListener("resize", resizeChart);
