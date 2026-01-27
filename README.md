@@ -42,12 +42,8 @@ ADMIN_NAME=管理员
   - `npm run dev`
   - 访问 `http://localhost:3000`
 
-## 百度地图集成说明（参考）
-- 申请百度地图 Web API Key：
-  - https://lbsyun.baidu.com/
-- 推荐使用 JS API 方式加载：
-  - https://lbsyun.baidu.com/index.php?title=jspopularGL
-- 可在前端 `HomeView` 的地图容器中加载地图与选点控件，并通过 `stats/points` 接口展示打点。
+## 地图说明
+- 首页使用 ECharts + GeoJSON 渲染中国地图，展示省份统计。
 
 ## 缩略图说明
 - 上传后自动生成缩略图并存放在 `/uploads/thumbs`
