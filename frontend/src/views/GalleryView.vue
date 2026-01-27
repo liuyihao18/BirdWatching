@@ -3,14 +3,24 @@
     <section class="card">
       <div class="section-title">画廊</div>
       <div class="form-row">
-        <select class="select" v-model="filters.province">
+        <select class="select" v-model="filters.province" @keydown.enter.prevent="loadPhotos">
           <option value="">全部省份</option>
           <option v-for="province in provinces" :key="province" :value="province">
             {{ province }}
           </option>
         </select>
-        <input class="input" v-model="filters.photographerName" placeholder="拍摄人姓名" />
-        <input class="input" v-model="filters.keyword" placeholder="搜索鸟类/地点" />
+        <input
+          class="input"
+          v-model="filters.photographerName"
+          placeholder="拍摄人姓名"
+          @keydown.enter.prevent="loadPhotos"
+        />
+        <input
+          class="input"
+          v-model="filters.keyword"
+          placeholder="搜索鸟类/地点"
+          @keydown.enter.prevent="loadPhotos"
+        />
       </div>
       <div class="flex-row gap-12 mt-12">
         <button class="button" @click="loadPhotos">筛选</button>
