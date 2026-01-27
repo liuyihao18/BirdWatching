@@ -358,7 +358,9 @@ a {
 }
 
 .hero-map-card {
-    height: 420px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    max-height: 460px;
     padding: 0;
     overflow: hidden;
 }
@@ -524,6 +526,37 @@ a {
     border-collapse: collapse;
 }
 
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-wrap .table {
+    min-width: 560px;
+}
+
+.user-list-mobile {
+    display: none;
+}
+
+.user-card {
+    border: 1px solid var(--border);
+    padding: 14px;
+    box-shadow: var(--shadow-soft);
+}
+
+.user-card-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.user-card-email {
+    margin: 6px 0 2px;
+    word-break: break-all;
+}
+
 .table th,
 .table td {
     border-bottom: 1px solid var(--border);
@@ -593,6 +626,78 @@ a {
     .modal-image-wrap {
         min-height: 220px;
         max-height: 300px;
+    }
+}
+
+@media (max-width: 720px) {
+    .navbar {
+        padding: 12px 0;
+    }
+
+    .navbar-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .nav-links a,
+    .nav-links strong {
+        font-size: 14px;
+        padding: 6px 8px;
+    }
+
+    .nav-links .badge {
+        margin-right: 0;
+    }
+
+    .button.ghost,
+    .button.secondary {
+        padding: 8px 12px;
+    }
+
+    .upload-photo-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .upload-photo-picker {
+        width: 100%;
+        height: 180px;
+    }
+
+    .upload-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .map-card-sm {
+        height: 260px;
+    }
+
+    .table th,
+    .table td {
+        font-size: 13px;
+        padding: 10px 6px;
+    }
+
+    .admin-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .table-wrap {
+        display: none;
+    }
+
+    .user-list-mobile {
+        display: grid;
+        gap: 12px;
     }
 }
 

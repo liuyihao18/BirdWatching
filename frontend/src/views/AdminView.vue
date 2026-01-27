@@ -14,7 +14,7 @@
             <option value="admin">管理员</option>
           </select>
         </div>
-        <div class="flex-row gap-12">
+        <div class="flex-row gap-12 admin-actions">
           <button class="button" type="submit">创建用户</button>
           <span v-if="message" class="text-success">{{ message }}</span>
         </div>
@@ -23,24 +23,36 @@
 
     <section class="card">
       <div class="section-title">用户列表</div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>姓名</th>
-            <th>邮箱</th>
-            <th>角色</th>
-            <th>创建时间</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="user in users" :key="user.id">
-            <td>{{ user.name }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.role }}</td>
-            <td>{{ formatDate(user.created_at) }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>姓名</th>
+              <th>邮箱</th>
+              <th>角色</th>
+              <th>创建时间</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="user in users" :key="user.id">
+              <td>{{ user.name }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.role }}</td>
+              <td>{{ formatDate(user.created_at) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="user-list-mobile">
+        <div v-for="user in users" :key="user.id" class="card user-card">
+          <div class="user-card-row">
+            <strong>{{ user.name }}</strong>
+            <span class="badge">{{ user.role }}</span>
+          </div>
+          <p class="text-muted user-card-email">{{ user.email }}</p>
+          <small class="text-muted">{{ formatDate(user.created_at) }}</small>
+        </div>
+      </div>
     </section>
 
     <section class="card">
