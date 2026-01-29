@@ -1,6 +1,11 @@
 <template>
   <div class="photo-card" @click="$emit('select', photo)">
-    <img :src="photo.image_thumb_path || photo.image_path" :alt="photo.bird_name_cn" />
+    <img
+      :src="photo.image_thumb_path || photo.image_path"
+      :alt="photo.bird_name_cn"
+      loading="lazy"
+      decoding="async"
+    />
     <div class="info">
       <strong>{{ photo.bird_name_cn }}</strong>
       <span class="badge">{{ photo.photographer_name }}</span>
