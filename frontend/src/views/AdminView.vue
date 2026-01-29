@@ -59,7 +59,13 @@
       <div class="section-title">全部照片</div>
       <div class="photo-grid">
         <div v-for="photo in photos" :key="photo.id" class="photo-card">
-          <img :src="photo.image_thumb_path || photo.image_path" :alt="photo.bird_name_cn" @click="selectPhoto(photo)" />
+          <img
+            :src="photo.image_thumb_path || photo.image_path"
+            :alt="photo.bird_name_cn"
+            loading="lazy"
+            decoding="async"
+            @click="selectPhoto(photo)"
+          />
           <div class="info">
             <strong>{{ photo.bird_name_cn }}</strong>
             <small>{{ photo.photographer_name }}</small>
