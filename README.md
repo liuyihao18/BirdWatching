@@ -56,6 +56,16 @@ ADMIN_NAME=管理员
 - 生成缩略图并清理无关联文件：
   - `npm run maintenance -- --clean-orphans`
 
+## 数据库备份与恢复
+- 备份：`mkdir -p backups` 后执行 `docker compose exec -T mysql mysqldump -uroot -p$MYSQL_ROOT_PASSWORD bird > backups/bird_$(date +%F).sql`
+- 恢复：`docker compose exec -T mysql mysql -uroot -p$MYSQL_ROOT_PASSWORD bird < backups/xxx.sql`
+- 提示：以上命令在宿主机执行，要求 `.env` 已配置 `MYSQL_ROOT_PASSWORD` 与 `MYSQL_DATABASE`。
+
+## 备份/恢复脚本（含照片文件）
+- 备份（数据库 + uploads）：`bash scripts/backup.sh`
+- 恢复（数据库 + uploads）：`bash scripts/restore.sh backups/xxx.sql backups/yyy.tar.gz`
+- 仅恢复数据库：`bash scripts/restore.sh backups/xxx.sql`
+
 ## 前端环境变量
 - `VITE_API_BASE`：后端 API 地址，Docker 下默认 `/api`
 - `VITE_BAIDU_MAP_KEY`：百度地图 Key
