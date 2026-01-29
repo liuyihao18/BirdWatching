@@ -6,7 +6,7 @@ COPY package.json ./
 RUN npm install --omit=dev
 
 COPY src ./src
-COPY uploads ./uploads
+COPY scripts ./scripts
 
 EXPOSE 5000
 

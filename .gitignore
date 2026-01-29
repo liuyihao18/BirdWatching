@@ -13,6 +13,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Backups
+**/backups/
+
 # OS
 .DS_Store
 Thumbs.db

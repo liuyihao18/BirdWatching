@@ -77,6 +77,9 @@ async function cleanOrphans() {
     }
 
     for (const file of allFiles) {
+        if (path.basename(file) === ".gitkeep") {
+            continue;
+        }
         if (!keep.has(file)) {
             fs.unlinkSync(file);
         }
