@@ -4,7 +4,7 @@
       <div class="grid modal-photo-grid">
         <div class="modal-image-wrap" @click="openLightbox">
           <img
-            :src="photo.image_path"
+            :src="photo.image_thumb_path || photo.image_path"
             :alt="photo.bird_name_cn"
             class="modal-image"
           />
