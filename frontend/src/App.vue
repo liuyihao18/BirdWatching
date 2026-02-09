@@ -21,6 +21,22 @@
     <main class="container page-padding">
       <router-view />
     </main>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">
+          京ICP备2026006318号
+        </a>
+        <span class="footer-divider">|</span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802047573"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img src="/police-badge.png" alt="公安备案" class="police-badge" />
+          京公网安备11010802047573号
+        </a>
+      </div>
+    </footer>
   </div>
 </template>
 

@@ -39,6 +39,46 @@ a {
     padding: 24px 0 60px;
 }
 
+.site-footer {
+    margin-top: 40px;
+    padding: 18px 0 30px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+    background: #fff;
+}
+
+.footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.site-footer a {
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+    color: var(--primary-dark);
+}
+
+.footer-divider {
+    color: #cbd5f5;
+}
+
+.police-badge {
+    margin-top: 1px;
+    width: 16px;
+    height: 17px;
+    display: inline-block;
+}
+
 .text-muted {
     color: var(--muted);
 }
@@ -684,6 +724,10 @@ a {
     .table td {
         font-size: 13px;
         padding: 10px 6px;
+    }
+
+    .site-footer {
+        padding: 16px 0 24px;
     }
 
     .admin-actions {
