@@ -13,7 +13,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${MYSQL_ROOT_PASSWORD}"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-p${MYSQL_ROOT_PASSWORD}" ]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -45,7 +45,7 @@ services:
       mysql:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "node", "/app/src/healthcheck.js"]
+      test: [ "CMD", "node", "/app/src/healthcheck.js" ]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -57,12 +57,12 @@ services:
       dockerfile: Dockerfile
     container_name: bird-frontend
     ports:
-      - "80:80"
+      - "11111:80"
     depends_on:
       backend:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      test: [ "CMD", "curl", "-f", "http://localhost/health" ]
       interval: 10s
       timeout: 5s
       retries: 10
